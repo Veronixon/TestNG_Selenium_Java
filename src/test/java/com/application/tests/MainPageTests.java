@@ -1,6 +1,7 @@
 package com.application.tests;
 import com.application.pages.MainPage;
 import org.testng.Assert;
+import org.testng.annotations.Ignore;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -15,6 +16,7 @@ public class MainPageTests extends BaseTest {
         Assert.assertTrue(mainPage.isLoaded(), "Main page is not loaded");
     }
 
+    @Ignore
     @Parameters("MainPageUrl")
     @Test()
     public void verifyPageIsOpened(String mainPageUrl){

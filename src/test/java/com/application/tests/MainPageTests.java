@@ -16,7 +16,6 @@ public class MainPageTests extends BaseTest {
         Assert.assertTrue(mainPage.isLoaded(), "Main page is not loaded");
     }
 
-    @Ignore
     @Parameters("MainPageUrl")
     @Test()
     public void verifyPageIsOpened(String mainPageUrl){

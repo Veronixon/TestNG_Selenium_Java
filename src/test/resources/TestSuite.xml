@@ -2,6 +2,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name = "Regression Test Suite">
+    <listeners>
+        <listener class-name="org.testng.reporters.XMLReporter"/>
+    </listeners>
     <test name = "Regression tests">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="MainPageUrl" value="https://www.selenium.dev"></parameter>

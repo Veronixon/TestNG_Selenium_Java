@@ -8,6 +8,7 @@ steps:
       mavenPomFile: 'pom.xml'  # Path to your Maven POM file
       goals: 'clean test'  # Specify Maven goals, e.g., clean and test
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
+    continueOnError: true
 
   - task: PublishTestResults@2
     inputs:

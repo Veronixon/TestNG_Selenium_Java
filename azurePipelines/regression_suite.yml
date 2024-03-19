@@ -11,7 +11,7 @@ steps:
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: '**/testng-results.xml'  # Adjust the file pattern to match your TestNG XML reports
+      testResultsFiles: 'test-output/testng-results.xml'  # Adjust the file pattern to match your TestNG XML reports
       testRunTitle: 'TestNG Test Run'  # Optionally, provide a title for the test run
       testConfiguration: 'Development'  # Optionally, specify a test configuration
       testPlatform: 'Java'  # Optionally, specify the test platform

@@ -1,9 +1,10 @@
 pool:
-  vmImage: 'ubuntu-latest'
+  name: mypool
+  agent: myagent
 
 steps:
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'  # Path to your Maven POM file
       goals: 'clean test'  # Specify Maven goals, e.g., clean and test
-      options: '-Dsurefire.suiteXmlFiles=testng.xml'
+      options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'

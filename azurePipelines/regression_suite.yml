@@ -18,3 +18,10 @@ steps:
       testPlatform: 'Java'  # Optionally, specify the test platform
       publishRunAttachments: false  # Optionally, publish attachments like screenshots, if any
     displayName: 'Publish TestNG Test Results'
+
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(Agent.BuildDirectory)/_work'
+      Contents: '**'  # Deletes all contents inside the folder
+      RemoveSourceFolder: true
+    displayName: 'Delete Folder'

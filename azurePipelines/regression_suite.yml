@@ -20,16 +20,16 @@ steps:
     displayName: 'Publish TestNG Test Results'
 
   - script: |
-      dir '$(Agent.BuildDirectory)/path/to/your/folder'
+      dir '$(Agent.BuildDirectory)/_work'
     displayName: 'List Contents of Folder'
 
   - task: DeleteFiles@1
     inputs:
-      SourceFolder: '$(Agent.BuildDirectory)/path/to/your/folder'
+      SourceFolder: '$(Agent.BuildDirectory)/_work'
       Contents: '**'
       RemoveSourceFolder: true
     displayName: 'Delete Folder'
 
   - script: |
-      dir '$(Agent.BuildDirectory)/path/to/your/folder'
+      dir '$(Agent.BuildDirectory)/_work'
     displayName: 'List Contents of Folder After Deletion'

@@ -19,8 +19,8 @@ steps:
       publishRunAttachments: false  # Optionally, publish attachments like screenshots, if any
     displayName: 'Publish TestNG Test Results'
 
-  - script: |
-      dir "$(Agent.BuildDirectory)/_work"
+  - powershell: |
+      Get-ChildItem -Path "$(Agent.BuildDirectory)/_work"
     displayName: 'List Contents of Folder'
 
   - task: DeleteFiles@1
@@ -30,6 +30,6 @@ steps:
       RemoveSourceFolder: true
     displayName: 'Delete Folder'
 
-  - script: |
-      dir "$(Agent.BuildDirectory)/_work"
-    displayName: 'List Contents of Folder After Deletion'
+  - powershell: |
+      Get-ChildItem -Path "$(Agent.BuildDirectory)/_work"
+    displayName: 'List Contents of Folder'

@@ -19,9 +19,17 @@ steps:
       publishRunAttachments: false  # Optionally, publish attachments like screenshots, if any
     displayName: 'Publish TestNG Test Results'
 
-#  - task: DeleteFiles@1
-#    inputs:
-#      SourceFolder: '$(Agent.BuildDirectory)/path/to/your/folder'
-#      Contents: '**'  # Deletes all contents inside the folder
-#      RemoveSourceFolder: true
-#    displayName: 'Delete Folder'
+  - script: |
+      dir '$(Agent.BuildDirectory)/path/to/your/folder'
+    displayName: 'List Contents of Folder'
+
+  - task: DeleteFiles@1
+    inputs:
+      SourceFolder: '$(Agent.BuildDirectory)/path/to/your/folder'
+      Contents: '**'
+      RemoveSourceFolder: true
+    displayName: 'Delete Folder'
+
+  - script: |
+      dir '$(Agent.BuildDirectory)/path/to/your/folder'
+    displayName: 'List Contents of Folder After Deletion'

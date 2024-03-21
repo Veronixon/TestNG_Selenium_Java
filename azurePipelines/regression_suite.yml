@@ -23,16 +23,12 @@ steps:
       Get-ChildItem -Path "$(Agent.BuildDirectory)"
     displayName: 'List Contents of Folder'
 
-  - powershell: |
-      Start-Sleep -Seconds 10  # Add a 10-second delay
-    displayName: 'Wait before deletion'
-
   - task: DeleteFiles@1
     inputs:
-      SourceFolder: '$(Agent.BuildDirectory)'
+      SourceFolder: '$(Agent.WorkFolder)'
       Contents: '**'
-      RemoveSourceFolder: true
-    displayName: 'Delete Folder'
+      CleanTargetFolder: true
+    displayName: 'Delete all files from _work directory'
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.BuildDirectory)"

@@ -20,16 +20,16 @@ steps:
     displayName: 'Publish TestNG Test Results'
 
   - powershell: |
-      Get-ChildItem -Path "$(Agent.BuildDirectory)/_work"
+      Get-ChildItem -Path "$(Agent.BuildDirectory)"
     displayName: 'List Contents of Folder'
 
   - task: DeleteFiles@1
     inputs:
-      SourceFolder: '$(Agent.BuildDirectory)/_work'
+      SourceFolder: '$(Agent.BuildDirectory)'
       Contents: '**'
       RemoveSourceFolder: true
     displayName: 'Delete Folder'
 
   - powershell: |
-      Get-ChildItem -Path "$(Agent.BuildDirectory)/_work"
+      Get-ChildItem -Path "$(Agent.BuildDirectory)"
     displayName: 'List Contents of Folder'

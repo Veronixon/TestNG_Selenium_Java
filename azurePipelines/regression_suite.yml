@@ -24,7 +24,8 @@ steps:
     displayName: 'List Contents of Folder'
 
   - script: |
-      rm -rf _work/*
+      del /S /Q _work\*
+      rmdir /S /Q _work
     displayName: 'Cleanup Work Directory'
 
 #  - task: DeleteFiles@1

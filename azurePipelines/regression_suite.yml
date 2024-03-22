@@ -12,17 +12,9 @@ steps:
       goals: 'clean test'
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
 
-  - task: PowerShell@2
-    inputs:
-      targetType: 'inline'
-      script: |
-        $filePath = "$(Agent.WorkFolder)\test-output\testng-results.xml"
-        if (Test-Path $filePath) {
-          Write-Host "File $filePath exists."
-        } else {
-          Write-Host "File $filePath does not exist."
-        }
-    displayName: 'Check if file exists'
+  - script: |
+      ls $(Build.SourcesDirectory)\test-output\testng-results.xml
+    displayName: 'List TestNG Results File'
     condition: succeededOrFailed()
 
   - task: PublishTestResults@2

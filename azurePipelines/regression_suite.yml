@@ -2,6 +2,9 @@ pool:
   name: mypool
   agent: myagent
 
+workspace:
+  clean: all
+
 steps:
   - task: Maven@3
     inputs:

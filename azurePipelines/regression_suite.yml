@@ -11,7 +11,7 @@ steps:
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: 'test-output/testng-results.xml'
+      testResultsFiles: '**/test-output/testng-results.xml'
       testRunTitle: 'TestNG Test Run'
       testConfiguration: 'Development'
       testPlatform: 'Java'

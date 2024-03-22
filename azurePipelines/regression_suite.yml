@@ -29,6 +29,7 @@ steps:
       Contents: '**'
       CleanTargetFolder: true
     displayName: 'Delete all files from _work directory'
+    continueOnError: true
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.BuildDirectory)"

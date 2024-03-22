@@ -12,7 +12,7 @@ steps:
   - task: CmdLine@2
     inputs:
       script: |
-        taskkill /F /IM chrome.exe
+        taskkill /F /IM chromedriver.exe
     condition: succeededOrFailed()
 
   - task: PublishTestResults@2

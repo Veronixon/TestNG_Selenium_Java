@@ -26,20 +26,12 @@ steps:
       Get-ChildItem -Path "$(Agent.WorkFolder)"
     displayName: 'List Contents of Folder'
 
-  - script: |
-      if exist _work (
-          del /S /Q _work\*
-          rmdir /S /Q _work
-      )
-    displayName: 'Cleanup Work Directory'
-
-#  - task: DeleteFiles@1
-#    inputs:
-#      SourceFolder: '$(Agent.WorkFolder)'
-#      Contents: '**'
-#      CleanTargetFolder: true
-#    displayName: 'Delete all files from _work directory'
-#    continueOnError: true
+  - task: DeleteFiles@1
+    displayName: 'CleanUp workspace directory'
+    condition: always()
+    inputs:
+      contents: |
+        **/*
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.WorkFolder)"

@@ -20,7 +20,7 @@ steps:
     displayName: 'Publish TestNG Test Results'
 
   - powershell: |
-      Get-ChildItem -Path "$(Agent.BuildDirectory)"
+      Get-ChildItem -Path "$(Agent.WorkFolder)"
     displayName: 'List Contents of Folder'
 
   - task: DeleteFiles@1
@@ -32,5 +32,5 @@ steps:
     continueOnError: true
 
   - powershell: |
-      Get-ChildItem -Path "$(Agent.BuildDirectory)"
+      Get-ChildItem -Path "$(Agent.WorkFolder)"
     displayName: 'List Contents of Folder'

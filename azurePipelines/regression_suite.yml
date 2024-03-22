@@ -8,12 +8,10 @@ steps:
       mavenPomFile: 'pom.xml'  # Path to your Maven POM file
       goals: 'clean test'  # Specify Maven goals, e.g., clean and test
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
-    continueOnError: true
 
   - task: CmdLine@2
     inputs:
       script: |
-        taskkill /F /IM chromedriver.exe
         taskkill /F /IM chrome.exe
     condition: succeededOrFailed()
 
@@ -25,10 +23,12 @@ steps:
       testPlatform: 'Java'  # Optionally, specify the test platform
       publishRunAttachments: false  # Optionally, publish attachments like screenshots, if any
     displayName: 'Publish TestNG Test Results'
+    condition: succeededOrFailed()
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.WorkFolder)"
     displayName: 'List Contents of Folder'
+    condition: succeededOrFailed()
 
   - task: DeleteFiles@1
     inputs:
@@ -37,7 +37,9 @@ steps:
       CleanTargetFolder: true
     displayName: 'Delete all files from _work directory'
     continueOnError: true
+    condition: succeededOrFailed()
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.WorkFolder)"
     displayName: 'List Contents of Folder'
+    condition: succeededOrFailed()

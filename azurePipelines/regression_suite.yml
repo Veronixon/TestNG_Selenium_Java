@@ -9,12 +9,6 @@ steps:
       goals: 'clean test'
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
 
-  - task: CmdLine@2
-    inputs:
-      script: |
-        taskkill /F /IM chromedriver.exe 2>NUL
-    condition: succeededOrFailed()
-
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: 'test-output/testng-results.xml'

@@ -2,12 +2,27 @@ pool:
   name: mypool
   agent: myagent
 
+variables:
+  system.debug: true
+
 steps:
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
       goals: 'clean test'
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
+
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        $filePath = "$(Agent.WorkFolder)\test-output\testng-results.xml"
+        if (Test-Path $filePath) {
+          Write-Host "File $filePath exists."
+        } else {
+          Write-Host "File $filePath does not exist."
+        }
+    displayName: 'Check if file exists'
 
   - task: PublishTestResults@2
     inputs:

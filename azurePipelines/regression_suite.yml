@@ -9,7 +9,7 @@ steps:
   - task: Maven@3
     inputs:
       mavenPomFile: 'pom.xml'
-      goals: 'clean test'
+      goals: 'test'
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
 
   - task: PublishTestResults@2

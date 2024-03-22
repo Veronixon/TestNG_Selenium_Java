@@ -2,9 +2,6 @@ pool:
   name: mypool
   agent: myagent
 
-workspace:
-  clean: all
-
 steps:
   - task: Maven@3
     inputs:
@@ -15,9 +12,9 @@ steps:
 
   - task: CmdLine@2
     inputs:
-     script: |
-      taskkill /F /IM chromedriver.exe
-      taskkill /F /IM chrome.exe
+      script: |
+        taskkill /F /IM chromedriver.exe
+        taskkill /F /IM chrome.exe
     condition: succeededOrFailed()
 
   - task: PublishTestResults@2
@@ -34,10 +31,12 @@ steps:
     displayName: 'List Contents of Folder'
 
   - task: DeleteFiles@1
-    displayName: 'CleanUp _work directory'
-    condition: always()
     inputs:
-      contents: '_work/**'
+      SourceFolder: '$(Agent.WorkFolder)'
+      Contents: '**'
+      CleanTargetFolder: true
+    displayName: 'Delete all files from _work directory'
+    continueOnError: true
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.WorkFolder)"

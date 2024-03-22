@@ -27,11 +27,10 @@ steps:
     displayName: 'List Contents of Folder'
 
   - task: DeleteFiles@1
-    displayName: 'CleanUp workspace directory'
+    displayName: 'CleanUp _work directory'
     condition: always()
     inputs:
-      contents: |
-        **/*
+      contents: '_work/**'
 
   - powershell: |
       Get-ChildItem -Path "$(Agent.WorkFolder)"

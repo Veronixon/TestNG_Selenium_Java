@@ -23,6 +23,7 @@ steps:
           Write-Host "File $filePath does not exist."
         }
     displayName: 'Check if file exists'
+    condition: succeededOrFailed()
 
   - task: PublishTestResults@2
     inputs:

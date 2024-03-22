@@ -5,8 +5,8 @@ pool:
 steps:
   - task: Maven@3
     inputs:
-      mavenPomFile: 'pom.xml'  # Path to your Maven POM file
-      goals: 'clean test'  # Specify Maven goals, e.g., clean and test
+      mavenPomFile: 'pom.xml'
+      goals: 'clean test'
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
 
   - task: CmdLine@2
@@ -17,17 +17,12 @@ steps:
 
   - task: PublishTestResults@2
     inputs:
-      testResultsFiles: 'test-output/testng-results.xml'  # Adjust the file pattern to match your TestNG XML reports
-      testRunTitle: 'TestNG Test Run'  # Optionally, provide a title for the test run
-      testConfiguration: 'Development'  # Optionally, specify a test configuration
-      testPlatform: 'Java'  # Optionally, specify the test platform
-      publishRunAttachments: false  # Optionally, publish attachments like screenshots, if any
+      testResultsFiles: 'test-output/testng-results.xml'
+      testRunTitle: 'TestNG Test Run'
+      testConfiguration: 'Development'
+      testPlatform: 'Java'
+      publishRunAttachments: false
     displayName: 'Publish TestNG Test Results'
-    condition: succeededOrFailed()
-
-  - powershell: |
-      Get-ChildItem -Path "$(Agent.WorkFolder)"
-    displayName: 'List Contents of Folder'
     condition: succeededOrFailed()
 
   - task: DeleteFiles@1
@@ -37,9 +32,4 @@ steps:
       CleanTargetFolder: true
     displayName: 'Delete all files from _work directory'
     continueOnError: true
-    condition: succeededOrFailed()
-
-  - powershell: |
-      Get-ChildItem -Path "$(Agent.WorkFolder)"
-    displayName: 'List Contents of Folder'
     condition: succeededOrFailed()

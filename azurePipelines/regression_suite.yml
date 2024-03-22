@@ -12,18 +12,6 @@ steps:
       goals: 'clean test'
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
 
-  - powershell: |
-      $testResultsPath = "$(Agent.WorkFolder)\1\s\test-output\testng-results.xml"
-      Write-Host "Listing contents of directory: $(Agent.WorkFolder)\1\s\test-output"
-      Get-ChildItem "$(Agent.WorkFolder)\1\s\test-output"
-      if (Test-Path $testResultsPath) {
-        Write-Host "Test result file exists: $testResultsPath"
-      } else {
-        Write-Host "Test result file does not exist: $testResultsPath"
-      }
-    displayName: 'Verify Test Result File'
-    condition: succeededOrFailed()
-
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: '$(Build.Repository.LocalPath)\**\testng-results.xml'

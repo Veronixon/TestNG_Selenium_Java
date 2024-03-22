@@ -13,6 +13,13 @@ steps:
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
     continueOnError: true
 
+  - task: CmdLine@2
+    inputs:
+     script: |
+      taskkill /F /IM chromedriver.exe
+      taskkill /F /IM chrome.exe
+    condition: succeededOrFailed()
+
   - task: PublishTestResults@2
     inputs:
       testResultsFiles: 'test-output/testng-results.xml'  # Adjust the file pattern to match your TestNG XML reports

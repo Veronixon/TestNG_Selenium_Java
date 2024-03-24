@@ -4,6 +4,7 @@
 <suite name = "Regression Test Suite">
     <listeners>
         <listener class-name="org.testng.reporters.XMLReporter"/>
+        <listener class-name="com.application.core.listeners.TestNGListener"/>
     </listeners>
     <test name = "Regression tests">
         <parameter name="browser" value="chrome"></parameter>

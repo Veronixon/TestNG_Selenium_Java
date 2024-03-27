@@ -1,16 +1,16 @@
 <?xml version = "1.0" encoding = "UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name = "Regression Test Suite">
+<suite name="Regression Test Suite" parallel="tests" thread-count="1">
     <listeners>
         <listener class-name="org.testng.reporters.XMLReporter"/>
         <listener class-name="com.application.core.listeners.TestNGListener"/>
     </listeners>
-    <test name = "Regression tests">
+    <test name="Regression tests" parallel="methods" thread-count="1">
         <parameter name="browser" value="chrome"></parameter>
         <parameter name="MainPageUrl" value="https://www.selenium.dev"></parameter>
         <classes>
-            <class name ="com.application.tests.MainPageTests" />
+            <class name="com.application.tests.MainPageTests"/>
         </classes>
     </test>
 </suite>

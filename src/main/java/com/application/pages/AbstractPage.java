@@ -9,9 +9,9 @@ public abstract class AbstractPage {
         this.driver = driver;
     }
 
-    public void navigateTo(String baseUrl){
+    public void navigateTo(String baseUrl) {
         driver.get(baseUrl);
-    };
+    }
 
     protected abstract boolean isLoaded();
 }

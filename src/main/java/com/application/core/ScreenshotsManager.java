@@ -4,38 +4,34 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 
-import static com.application.core.helpers.DateHelper.getTodayDateInProperFormat;
-
 public class ScreenshotsManager {
-    private static Logger log =  LogManager.getLogger(ScreenshotsManager.class);
+    private static final Logger log = LogManager.getLogger(ScreenshotsManager.class);
 
     /**
      * This function will take screenshot
      *
-     * @param driver
+     * @param testName String name of the test
      * @throws Exception
      */
 
-    public static void takeScreenShot(WebDriver driver, String testSuiteName, String testName, String methodName) {
-        TakesScreenshot scrShot = ((TakesScreenshot) driver);
+    public static void takeScreenShot(String testName) {
+        TakesScreenshot scrShot = ((TakesScreenshot) WebDriverFactorySingleton.getInstance().getDriver());
         File SrcFile = scrShot.getScreenshotAs(OutputType.FILE);
-        File DestFile = new File(System.getProperty("user.dir")
+        File DestFile = new File("test-output"
                 + File.separator + "screenshots"
-                + File.separator + getTodayDateInProperFormat("dd/MM/yyyy")
-                + File.separator + testSuiteName
-                + File.separator + testName
-                + File.separator + methodName
-                + " " + ".png");
+                + File.separator + testName + "_"
+                + System.currentTimeMillis()
+                + ".png");
         try {
+            log.info("Attach screenshot to failed test.");
             FileUtils.copyFile(SrcFile, DestFile);
-        }catch (IOException exception){
-            log.info(exception.getMessage());
+        } catch (IOException exception) {
+            log.info("Failed to attach screenshot to test.");
         }
     }
 }

@@ -23,5 +23,4 @@ public class MainPageTests extends BaseTest {
         mainPage.navigateTo(mainPageUrl);
         Assert.assertTrue(false, "Page is not loaded");
     }
-
 }

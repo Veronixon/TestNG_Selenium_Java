@@ -43,6 +43,10 @@ public class WebDriverFactorySingleton {
         return driver;
     }
 
+    public WebDriver getDriver() {
+        return driverThreadLocal.get();
+    }
+
     public void quitDriver() {
         WebDriver driver = driverThreadLocal.get();
         if (driver != null) {

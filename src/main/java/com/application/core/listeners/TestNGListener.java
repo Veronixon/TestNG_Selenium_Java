@@ -14,7 +14,7 @@ public class TestNGListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        ScreenshotsManager.takeScreenShot(result.getName());
+        ScreenshotsManager.takeScreenshotForAllureReport(result.getName());
     }
 
     @Override

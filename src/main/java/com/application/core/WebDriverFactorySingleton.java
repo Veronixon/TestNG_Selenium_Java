@@ -2,9 +2,12 @@ package com.application.core;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class WebDriverFactorySingleton {
     private static final Logger log = LogManager.getLogger(WebDriverFactorySingleton.class);
@@ -28,7 +31,7 @@ public class WebDriverFactorySingleton {
         switch (browser) {
             case "chrome":
                 log.info("Start Chrome driver.");
-                driver = new ChromeDriver();
+                driver = getChromeDriver();
                 break;
             case "firefox":
                 log.info("Start FireFox driver.");
@@ -36,7 +39,7 @@ public class WebDriverFactorySingleton {
                 break;
             default:
                 System.out.println("Start Chrome driver.");
-                driver = new ChromeDriver();
+                driver = getChromeDriver();
                 break;
         }
         driverThreadLocal.set(driver);
@@ -53,5 +56,11 @@ public class WebDriverFactorySingleton {
             driver.quit();
             driverThreadLocal.remove();
         }
+    }
+
+    private WebDriver getChromeDriver() {
+        ChromeOptions chromeOptions = new ChromeOptions();
+        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+        return new ChromeDriver();
     }
 }

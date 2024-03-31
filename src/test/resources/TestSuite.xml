@@ -11,6 +11,7 @@
         <parameter name="MainPageUrl" value="https://www.selenium.dev"></parameter>
         <classes>
             <class name="com.application.tests.MainPageTests"/>
+            <!--<class name="com.application.tests.NavigationBarTests"/> -->
         </classes>
     </test>
 </suite>

@@ -17,6 +17,7 @@ steps:
     inputs:
       allureVersion: 2.27.0
       testResultsDir: allure-results
+    condition: succeededOrFailed()
 
   - task: PublishTestResults@2
     inputs:

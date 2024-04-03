@@ -27,8 +27,6 @@ public class MainPageTests extends BaseTest {
         Assert.assertTrue(mainPage.isLoaded(), "Main page is not loaded");
     }
 
-
-    @Ignore
     @Test(testName = "Navigate to Main page - Fail")
     @Description("Test which always fails")
     @Link(name = "Main Page link", url = "https://www.selenium.dev", type = "custom")

@@ -16,7 +16,7 @@ steps:
     displayName: Publish Allure Report
     inputs:
       allureVersion: 2.27.0
-      testResultsDir: allure-results
+      testResultsDir: target\allure-results
     condition: succeededOrFailed()
 
   - task: PublishTestResults@2

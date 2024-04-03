@@ -13,7 +13,7 @@ steps:
       options: '-Dsurefire.suiteXmlFiles=src/test/resources/TestSuite.xml'
 
   - task: PublishAllureReport@1
-    displayName: Publish Report
+    displayName: Publish Allure Report
     inputs:
       allureVersion: 2.27.0
       testResultsDir: allure-results
